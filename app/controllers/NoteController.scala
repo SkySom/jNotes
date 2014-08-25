@@ -7,6 +7,6 @@ import play.api.mvc.{Action, Controller}
 
 object NoteController extends Controller {
 	def index = Action {
-		Ok();
+		Ok("Things are working");
 	}
 }
