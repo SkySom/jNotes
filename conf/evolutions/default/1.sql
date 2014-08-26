@@ -2,12 +2,16 @@
 
 # --- !Ups
 
-CREATE TABLE User (
-  userId bigint(20) NOT NULL,
-  username varchar(255) NOT NULL,
-  email varchar(255) NOT NULL,
-  password varchar(255) NOT NULL,
-  PRIMARY KEY (userId ASC)
+CREATE TABLE "User"
+(
+	"userId" integer NOT NULL,
+	username character varying(255) NOT NULL,
+	email character varying(255) NOT NULL,
+	password character varying(255) NOT NULL,
+	CONSTRAINT "User_pkey" PRIMARY KEY ("userId")
+)
+WITH (
+	OIDS=FALSE
 );
 
 # --- !Downs

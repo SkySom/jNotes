@@ -4,7 +4,7 @@ version := "1.0"
 
 libraryDependencies ++= Seq(
 	jdbc,
-	"org.xerial" % "sqlite-jdbc" % "3.7.15-M1"
+	"postgresql" % "postgresql" % "9.1-901.jdbc4"
 )
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
