@@ -9,15 +9,15 @@ import play.api.db._
 import play.api.Play.current
 
 class Note(nameValue:String, messageValue: String, userValue: User) {
-	def noteId = 0
+	def noteId = 1
 	def name = nameValue
 	def message = messageValue
 	def user = userValue
 
 	def save = {
 		DB.withConnection { implicit c =>
-			val result: Option[Long] = SQL("insert into Note(name, message, userId) values({name},{message},{userId})")
-				.on('name -> name, 'message -> message, 'userId -> user.userId).executeInsert()
+			val result: Option[Long] = SQL("insert into \"note\"(name, message, userid) values({name},{message},{userid})")
+				.on('name -> name, 'message -> message, 'userid -> user.userId).executeInsert()
 		}
 	}
 }

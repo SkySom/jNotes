@@ -1,19 +1,19 @@
 # Users schema
 
 # --- !Ups
-
-CREATE TABLE "User"
+CREATE SEQUENCE useridseq;
+CREATE TABLE "user"
 (
-	"userId" integer NOT NULL,
+	userid integer NOT NULL DEFAULT nextval('useridseq'),
 	username character varying(255) NOT NULL,
 	email character varying(255) NOT NULL,
 	password character varying(255) NOT NULL,
-	CONSTRAINT "User_pkey" PRIMARY KEY ("userId")
+	CONSTRAINT user_pkey PRIMARY KEY (userid)
 )
 WITH (
 	OIDS=FALSE
 );
-
+ALTER SEQUENCE useridseq OWNED BY user.userid;
 # --- !Downs
 
-DROP TABLE User;
+DROP TABLE "user";
