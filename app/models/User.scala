@@ -8,7 +8,11 @@ import anorm._
 import play.api.db._
 import play.api.Play.current
 
-class User(userId: String, username: String, email: String, password: String) {
+import scala.util.Try
+
+class User(userIdValue: Int, username: String, email: String, password: String) {
+	def userId = userIdValue
+
 	def save = {
 		DB.withConnection { implicit c =>
 			val result: Option[Long] = SQL("insert into \"user\"(username, email, password) values({username},{email},{password})")
@@ -18,10 +22,16 @@ class User(userId: String, username: String, email: String, password: String) {
 }
 
 object User {
-	def getById(id: Int): User = {
-		val res: SqlQueryResult = SQL("SELECT userid, username, email, password FROM user WHERE userid = {userid}").
+	def getById(id: Int): Try[User] = {
+		//This seems wrong on so many levels
+		Try {
+			val res: Row = DB.withConnection(implicit c =>
+				SQL("SELECT userid, username, email, password FROM \"user\" WHERE userid = {userid}").
 				on("userid" -> id).apply().head
-		val user: User = new User(res[Int]("userid"), res[String]("username"), res[String]("email"), res[String]("password"))
-		return user
+			)
+
+			val user: User = new User(res[Int]("userid"), res[String]("username"), res[String]("email"), res[String]("password"))
+			return Try(user)
+		}
 	}
 }

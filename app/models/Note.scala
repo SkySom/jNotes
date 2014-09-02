@@ -7,6 +7,7 @@ package models
 import anorm._
 import play.api.db._
 import play.api.Play.current
+import models.User
 
 class Note(nameValue:String, messageValue: String, userValue: User) {
 	def noteId = 1

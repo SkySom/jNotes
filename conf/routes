@@ -6,11 +6,11 @@
 GET         /                          controllers.Application.index
 
 # Notes
-GET         /notes                     controllers.NoteController.index
-POST        /notes                     controllers.NoteController.create
+GET         /note                      controllers.NoteController.index
+POST        /note                      controllers.NoteController.create
 
 # Users
-GET         /users/{<[0-9]+>id}        controllers.UserController.get(id: Int)
+GET         /user/$id<[0-9]+>         controllers.UserController.get(id: Int)
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file              controllers.Assets.at(path="/public", file)
