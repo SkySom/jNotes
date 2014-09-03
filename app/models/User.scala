@@ -15,7 +15,7 @@ class User(userIdValue: Long, username: String, email: String, password: String,
 
 	def create = {
 		DB.withConnection { implicit c =>
-			val result: Option[Long] = SQL("insert into \"user\"(username, email, password, hash) " +
+			val result: Option[Long] = SQL("insert into users(username, email, password, hash) " +
 				"values({username},{email},{password}, {hash})")
 				.on('username -> username, 'email -> email, 'password -> password, 'hash -> hash).executeInsert()
 		}
@@ -23,7 +23,7 @@ class User(userIdValue: Long, username: String, email: String, password: String,
 
 	def save = {
 		DB.withConnection { implicit c =>
-			val result: Int = SQL("insert into \"user\"(username, email, password, hash) " +
+			val result: Int = SQL("insert into users(username, email, password, hash) " +
 				"values({username},{email},{password}, {hash})")
 				.on('username -> username, 'email -> email, 'password -> password, 'hash -> hash).executeUpdate()
 		}
@@ -35,7 +35,7 @@ object User {
 		//This seems wrong on so many levels
 		Try {
 			val res: Row = DB.withConnection(implicit c =>
-				SQL("SELECT userid, username, email, password, hash FROM \"user\" WHERE userid = {userid}").
+				SQL("SELECT userid, username, email, password, hash FROM users WHERE userid = {userid}").
 				on("userid" -> id).apply().head
 			)
 

@@ -17,7 +17,7 @@ class Note(nameValue:String, messageValue: String, userValue: User) {
 
 	def save = {
 		DB.withConnection { implicit c =>
-			val result: Option[Long] = SQL("insert into \"note\"(name, message, userid) values({name},{message},{userid})")
+			val result: Option[Long] = SQL("insert into notes(name, message, userid) values({name},{message},{userid})")
 				.on('name -> name, 'message -> message, 'userid -> user.userId).executeInsert()
 		}
 	}
