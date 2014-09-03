@@ -17,6 +17,7 @@ WITH (
 	OIDS=FALSE
 );
 ALTER SEQUENCE noteidseq OWNED BY note.noteid;
+
 # --- !Downs
 
 DROP TABLE "note";
