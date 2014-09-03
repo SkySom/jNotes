@@ -10,9 +10,8 @@ import play.api.Play.current
 
 import scala.util.Try
 
-class User(userIdValue: Long, username: String, email: String, password: String) {
+class User(userIdValue: Long, username: String, email: String, password: String, hash: String) {
 	def userId = userIdValue
-	def hash: String = ""
 
 	def create = {
 		DB.withConnection { implicit c =>
@@ -41,7 +40,8 @@ object User {
 			)
 
 			val user: User = new User(res[Int]("userid"), res[String]("username"), res[String]("email"),
-				res[String]("password"))
+				res[String]("password"), res[String]("hash"))
+
 			return Try(user)
 		}
 	}
