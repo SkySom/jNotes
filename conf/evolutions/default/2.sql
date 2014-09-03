@@ -1,4 +1,4 @@
-# Notes schema
+#Notes schema
 
 # --- !Ups
 CREATE SEQUENCE noteidseq;
