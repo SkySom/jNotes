@@ -1,9 +1,9 @@
 #Add hash to users
 
 # --- !Ups
-ALTER table "user"
+ALTER table users
   ADD COLUMN hash character varying(255) NOT NULL;
 
 # --- !Downs
-ALTER table "user"
+ALTER table users
   DROP COLUMN hash;

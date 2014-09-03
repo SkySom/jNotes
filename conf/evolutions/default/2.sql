@@ -2,7 +2,7 @@
 
 # --- !Ups
 CREATE SEQUENCE noteidseq;
-CREATE TABLE "note"
+CREATE TABLE notes
 (
 	noteid integer NOT NULL DEFAULT nextval('noteidseq'),
 	name character varying(255) NOT NULL,
@@ -10,14 +10,14 @@ CREATE TABLE "note"
 	userid integer NOT NULL,
 	CONSTRAINT note_pkey PRIMARY KEY (noteid),
 	CONSTRAINT note_userid_fkey FOREIGN KEY (userid)
-	REFERENCES "user" (userid) MATCH SIMPLE
+	REFERENCES users (userid) MATCH SIMPLE
 	ON UPDATE NO ACTION ON DELETE NO ACTION
 )
 WITH (
 	OIDS=FALSE
 );
-ALTER SEQUENCE noteidseq OWNED BY note.noteid;
+ALTER SEQUENCE noteidseq OWNED BY notes.noteid;
 
 # --- !Downs
 
-DROP TABLE "note";
+DROP TABLE note;

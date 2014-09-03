@@ -10,8 +10,9 @@ import models.{Note, User}
 import scala.util.{Failure, Success}
 
 object UserController extends Controller {
-	def index = Action {
-		Ok("Things are working")
+	def create = Action(parse.json) { request =>
+		println(request.body.toString())
+		Ok("")
 	}
 
 	def get(id: Int) = Action {
@@ -22,9 +23,5 @@ object UserController extends Controller {
 			case Failure(e) =>
 				Ok(e.toString)
 		}
-	}
-
-	def create = Action {
-		Ok("Things are working")
 	}
 }

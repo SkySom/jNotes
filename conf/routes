@@ -3,16 +3,18 @@
 # ~~~~
 
 # Home page
-GET         /                          controllers.Application.index
+GET         /                        controllers.Application.index
 
 # Notes
-GET         /note                      controllers.NoteController.index
-POST        /note                      controllers.NoteController.create
+GET         /note                    controllers.NoteController.index
+POST        /note                    controllers.NoteController.create
 
 # Users
-GET         /user/$id<[0-9]+>         controllers.UserController.get(id: Int)
+POST        /user                    controllers.UserController.create
+GET         /user/$id<[0-9]+>        controllers.UserController.get(id: Int)
+
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file              controllers.Assets.at(path="/public", file)
+GET         /assets/*file            controllers.Assets.at(path="/public", file)
 
     

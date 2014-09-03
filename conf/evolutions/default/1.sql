@@ -2,7 +2,7 @@
 
 # --- !Ups
 CREATE SEQUENCE useridseq;
-CREATE TABLE "user"
+CREATE TABLE users
 (
 	userid integer NOT NULL DEFAULT nextval('useridseq'),
 	username character varying(255) NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE "user"
 WITH (
 	OIDS=FALSE
 );
-ALTER SEQUENCE useridseq OWNED BY user.userid;
+ALTER SEQUENCE useridseq OWNED BY users.userid;
 # --- !Downs
 
-DROP TABLE "user";
+DROP TABLE user;
