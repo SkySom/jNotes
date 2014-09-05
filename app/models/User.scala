@@ -11,7 +11,6 @@ import play.api.db._
 import play.api.Play.current
 
 import scala.util.Try
-import scala.util.control.Exception
 
 class User(userIdValue: Long, username: String, email: String, password: String, hash: String) {
 	def userId = userIdValue
