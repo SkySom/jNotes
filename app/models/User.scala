@@ -19,8 +19,9 @@ class User(userIdValue: Long, username: String, email: String, password: String,
 	def save = {
 		DB.withConnection { implicit c =>
 			val result: Int = SQL("insert into users(username, email, password, hash) " +
-				"values({username},{email},{password}, {hash})")
-				.on('username -> username, 'email -> email, 'password -> password, 'hash -> hash).executeUpdate()
+				"values({username},{email},{password}, {hash}) where userid = {userid}")
+				.on('userid -> userId, 'username -> username, 'email -> email, 'password -> password, 'hash -> hash)
+				.executeUpdate()
 		}
 	}
 
