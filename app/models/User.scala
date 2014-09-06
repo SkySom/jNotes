@@ -4,9 +4,9 @@ package models
  * Created by Skylar on 8/26/2014.
  */
 
-import java.lang.Exception
-
 import anorm._
+import java.lang.IllegalArgumentException
+import org.postgresql.util.PSQLException
 import play.api.db._
 import play.api.Play.current
 
@@ -32,7 +32,6 @@ class User(userIdValue: Long, username: String, email: String, password: String,
 
 object User {
 	def getById(id: Long): Try[User] = {
-		//This seems wrong on so many levels
 		Try {
 			val res: Row = DB.withConnection(implicit c =>
 				SQL("SELECT userid, username, email, password, hash FROM users WHERE userid = {userid}").
@@ -47,21 +46,14 @@ object User {
 	}
 
 	def create(username: String, email: String, password: String, hash: String)= {
-		try{
+		try {
 			val result: Option[Long] = DB.withConnection { implicit c =>
 				SQL("insert into users(username, email, password, hash) " +
 					"values({username},{email},{password}, {hash})")
 					.on('username -> username, 'email -> email, 'password -> password, 'hash -> hash).executeInsert()
 			}
-
-			result match {
-				case Some(res) =>
-					val id = res
-					val user = new User(id, username, email, password, hash)
-					user
-			}
-
+		} catch {
+			case e: PSQLException => throw new IllegalArgumentException("Username or Email already taken")
 		}
 	}
-
 }
