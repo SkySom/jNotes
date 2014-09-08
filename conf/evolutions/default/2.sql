@@ -21,3 +21,4 @@ ALTER SEQUENCE noteidseq OWNED BY notes.noteid;
 # --- !Downs
 
 DROP TABLE note;
+DROP SEQUENCE noteidseq;

@@ -17,3 +17,4 @@ ALTER SEQUENCE useridseq OWNED BY users.userid;
 # --- !Downs
 
 DROP TABLE user;
+DROP SEQUENCE useridseq;
