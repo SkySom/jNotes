@@ -1,4 +1,3 @@
-Notes2
+jNotes
 ======
-
-Scala Notes
+A SPA built on AngularJS, Spring boot, and Hibernate 
