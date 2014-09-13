@@ -27,6 +27,8 @@ repositories {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.hibernate:hibernate-core:4.3.6.Final")
+    compile('postgresql:postgresql:9.1-901-1.jdbc4')
     testCompile("junit:junit")
 }
 
