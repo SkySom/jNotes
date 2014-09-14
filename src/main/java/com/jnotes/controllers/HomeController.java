@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/")
 public class HomeController {
 	@RequestMapping(method = RequestMethod.GET)
-	public String greeting(Model model) {
+	public String greeting() {
 		return "main";
 	}
 }
