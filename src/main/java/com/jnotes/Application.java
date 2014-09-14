@@ -4,6 +4,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.metadata.ClassMetadata;
 import org.hibernate.service.ServiceRegistry;
@@ -54,7 +55,7 @@ public class Application {
 			Configuration configuration = new Configuration();
 			configuration.configure("hibernate.cfg.xml");
 
-			serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+			serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
 			ourSessionFactory = configuration.buildSessionFactory(serviceRegistry);
 		} catch (Throwable ex) {
 			throw new ExceptionInInitializerError(ex);
