@@ -27,14 +27,20 @@ public class NotesController {
 		return noteEntity;
 	}
 
-    @RequestMapping(value = "/notes", method = RequestMethod.POST, consumes="application/json")
+    @RequestMapping(value = "/notes", method = RequestMethod.POST, consumes = "application/json")
     @ResponseBody
     public NoteEntity createNote(@RequestBody NoteEntity noteEntity) throws ResourceNotCreatedException {
         noteRepository.save(noteEntity);
-        if(noteEntity == null) {
+        if(noteEntity.getId() == 0) {
             throw new ResourceNotCreatedException("Note couldn't be created");
         }
-        System.out.print(noteEntity.toString());
         return noteEntity;
+    }
+
+    @RequestMapping(value = "/notes/{noteId}", method = RequestMethod.DELETE, consumes = "application/json")
+    @ResponseBody
+    public String deleteNote(@PathVariable("noteId") int id) {
+        String message = noteRepository.delete(id);
+        return message;
     }
 }

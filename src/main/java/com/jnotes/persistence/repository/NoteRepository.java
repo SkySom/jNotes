@@ -8,7 +8,7 @@ import com.jnotes.models.NoteEntity;
 public interface NoteRepository {
     NoteEntity save(NoteEntity noteEntity);
 
-	void delete(int id);
+	String delete(int id);
 
 	NoteEntity findById(int id);
 }
