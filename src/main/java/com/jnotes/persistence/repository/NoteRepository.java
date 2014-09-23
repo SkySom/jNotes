@@ -1,6 +1,5 @@
 package com.jnotes.persistence.repository;
 
-import com.jnotes.models.NoteCreation;
 import com.jnotes.models.NoteEntity;
 
 /**

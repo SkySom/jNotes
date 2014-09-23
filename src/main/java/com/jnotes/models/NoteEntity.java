@@ -1,7 +1,7 @@
 package com.jnotes.models;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by Skylar on 9/13/2014.
@@ -12,16 +12,8 @@ public class NoteEntity {
 	private int id;
 	private String title;
 	private String text;
-	private Timestamp dateCreated;
-
-    public NoteEntity() {
-
-    }
-
-    public NoteEntity(NoteCreation noteCreation) {
-        setTitle(noteCreation.getTitle());
-        setText(noteCreation.getText());
-    }
+	private Date dateCreated;
+    private Date dateUpdated;
 
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -55,14 +47,36 @@ public class NoteEntity {
 	}
 
 	@Basic
-	@Column(name = "date_created")
-	public Timestamp getDateCreated() {
+    @Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_created", nullable = false)
+	public Date getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(Timestamp dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
+
+    @Basic
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "date_updated", nullable = false)
+    public Date getDateUpdated() {
+        return dateUpdated;
+    }
+
+    public void setDateUpdated(Date dateUpdated) {
+        this.dateUpdated = dateUpdated;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        setDateCreated(new Date());
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        setDateUpdated(new Date());
+    }
 
 	@Override
 	public boolean equals(Object o) {
@@ -95,6 +109,7 @@ public class NoteEntity {
         builder.append("\nNote title: " + getTitle());
         builder.append("\nNote text: " + getText());
         builder.append("\nNote creation date: " + getDateCreated());
+        builder.append("\nNote last update: " + getDateUpdated());
         return builder.toString();
     }
 }

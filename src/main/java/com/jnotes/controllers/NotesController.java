@@ -2,7 +2,6 @@ package com.jnotes.controllers;
 
 import com.jnotes.exceptions.ResourceNotCreatedException;
 import com.jnotes.exceptions.ResourceNotFoundException;
-import com.jnotes.models.NoteCreation;
 import com.jnotes.models.NoteEntity;
 import com.jnotes.persistence.repository.NoteHibernateRepository;
 import com.jnotes.persistence.repository.NoteRepository;
