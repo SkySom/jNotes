@@ -1,5 +1,6 @@
 package com.jnotes.controllers;
 
+import com.jnotes.exceptions.ResourceNotCreatedException;
 import com.jnotes.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,4 +22,11 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
 	public String handleResourceNotFoundException(ResourceNotFoundException ex) {
 		return ex.getMessage();
 	}
+
+    @ExceptionHandler(ResourceNotCreatedException.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public String handleResourceNotCreatedException(ResourceNotCreatedException ex) {
+        return ex.getMessage();
+    }
 }

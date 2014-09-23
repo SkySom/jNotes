@@ -8,13 +8,23 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name = "notes", schema = "public", catalog = "notes")
-public class NotesEntity {
+public class NoteEntity {
 	private int id;
 	private String title;
 	private String text;
 	private Timestamp dateCreated;
 
+    public NoteEntity() {
+
+    }
+
+    public NoteEntity(NoteCreation noteCreation) {
+        setTitle(noteCreation.getTitle());
+        setText(noteCreation.getText());
+    }
+
 	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id")
 	public int getId() {
 		return id;
@@ -59,7 +69,7 @@ public class NotesEntity {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 
-		NotesEntity that = (NotesEntity) o;
+		NoteEntity that = (NoteEntity) o;
 
 		if (id != that.id) return false;
 		if (dateCreated != null ? !dateCreated.equals(that.dateCreated) : that.dateCreated != null) return false;
@@ -77,4 +87,14 @@ public class NotesEntity {
 		result = 31 * result + (dateCreated != null ? dateCreated.hashCode() : 0);
 		return result;
 	}
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("\nNote id: " + getId());
+        builder.append("\nNote title: " + getTitle());
+        builder.append("\nNote text: " + getText());
+        builder.append("\nNote creation date: " + getDateCreated());
+        return builder.toString();
+    }
 }

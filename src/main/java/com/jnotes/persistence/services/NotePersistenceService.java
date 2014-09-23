@@ -1,15 +1,15 @@
 package com.jnotes.persistence.services;
 
-import com.jnotes.models.NotesEntity;
+import com.jnotes.models.NoteEntity;
 
 /**
  * Created by Skylar on 9/22/2014.
  */
 public interface NotePersistenceService {
 
-	public NotesEntity getNote(int id);
+	public NoteEntity getNote(int id);
 
-	public NotesEntity createNote(NotesEntity notesEntity);
+	public NoteEntity createNote(NoteEntity noteEntity);
 
 	public boolean deleteNote(int id);
 }
