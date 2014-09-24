@@ -23,7 +23,6 @@ public class NotesController {
 		if(noteEntity == null) {
 			throw new ResourceNotFoundException("Note with id " + id + " could not be found.");
 		}
-		System.out.println(id);
 		return noteEntity;
 	}
 
@@ -48,7 +47,7 @@ public class NotesController {
         }
     }
 
-    @RequestMapping(value = "/notes/{noteId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/notes/{noteId}", method = RequestMethod.PUT, consumes = "application/json")
     @ResponseBody
     public NoteEntity updateNote(@RequestBody NoteEntity noteEntity, @PathVariable("noteId") int id)
         throws ResourceNotFoundException {

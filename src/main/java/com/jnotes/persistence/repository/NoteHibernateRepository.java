@@ -28,7 +28,7 @@ public class NoteHibernateRepository implements NoteRepository {
         try {
             session = Application.getSession();
             transaction = session.beginTransaction();
-            session.save(noteEntity);
+            session.saveOrUpdate(noteEntity);
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,7 +81,7 @@ public class NoteHibernateRepository implements NoteRepository {
 		NoteEntity noteEntity = null;
 		try {
 			session = Application.getSession();
-			noteEntity = (NoteEntity)session.load(NoteEntity.class, id);
+			noteEntity = (NoteEntity)session.get(NoteEntity.class, id);
 			Hibernate.initialize(noteEntity);
 		} catch (Exception e) {
 			e.printStackTrace();
