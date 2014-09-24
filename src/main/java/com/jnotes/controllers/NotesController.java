@@ -48,5 +48,18 @@ public class NotesController {
         }
     }
 
-
+    @RequestMapping(value = "/notes/{noteId}", method = RequestMethod.PUT)
+    @ResponseBody
+    public NoteEntity updateNote(@RequestBody NoteEntity noteEntity, @PathVariable("noteId") int id)
+        throws ResourceNotFoundException {
+        NoteEntity updatedNoteEntity = noteRepository.findById(id);
+        if(updatedNoteEntity != null) {
+            updatedNoteEntity.setText(noteEntity.getText());
+            updatedNoteEntity.setTitle(noteEntity.getTitle());
+            noteRepository.save(updatedNoteEntity);
+        } else {
+            throw new ResourceNotFoundException("Note with id " + id + " could not be found");
+        }
+        return updatedNoteEntity;
+    }
 }
