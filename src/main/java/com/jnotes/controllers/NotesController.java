@@ -37,10 +37,16 @@ public class NotesController {
         return noteEntity;
     }
 
-    @RequestMapping(value = "/notes/{noteId}", method = RequestMethod.DELETE, consumes = "application/json")
+    @RequestMapping(value = "/notes/{noteId}", method = RequestMethod.DELETE)
     @ResponseBody
-    public String deleteNote(@PathVariable("noteId") int id) {
-        String message = noteRepository.delete(id);
-        return message;
+    public void deleteNote(@PathVariable("noteId") int id) throws ResourceNotFoundException {
+        NoteEntity noteEntity = noteRepository.findById(id);
+        if(noteEntity != null) {
+            noteRepository.delete(noteEntity);
+        } else {
+            throw new ResourceNotFoundException("Note with id " + id + " could not be found");
+        }
     }
+
+
 }

@@ -44,20 +44,23 @@ public class NoteHibernateRepository implements NoteRepository {
 	}
 
 	@Override
-	public String delete(int id) {
+	public void delete(int id) {
+        NoteEntity noteEntity = null;
+        noteEntity = findById(id);
+        if(noteEntity != null) {
+            delete(noteEntity);
+        }
+	}
+
+    @Override
+    public void delete(NoteEntity noteEntity) {
         Session session = null;
         Transaction transaction = null;
-        NoteEntity noteEntity = null;
-        String message = null;
         try {
             session = Application.getSession();
             transaction = session.beginTransaction();
-            noteEntity = findById(id);
             if(noteEntity != null) {
                 session.delete(noteEntity);
-                message = "Entry with id " + id + " has been deleted";
-            } else {
-                message = "Entry with id " + id + " was not found";
             }
             transaction.commit();
         } catch (Exception e) {
@@ -70,10 +73,9 @@ public class NoteHibernateRepository implements NoteRepository {
                 session.close();
             }
         }
-        return message;
-	}
+    }
 
-	@Override
+    @Override
 	public NoteEntity findById(int id) {
 		Session session = null;
 		NoteEntity noteEntity = null;
