@@ -1,9 +1,7 @@
 package com.jnotes.persistence.repository;
 
 import com.jnotes.Application;
-import com.jnotes.exceptions.ResourceNotFoundException;
-import com.jnotes.models.NoteEntity;
-import javassist.tools.rmi.ObjectNotFoundException;
+import com.jnotes.models.Note;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -15,20 +13,20 @@ import java.util.Date;
  */
 public class NoteHibernateRepository implements NoteRepository {
 	@Override
-	public NoteEntity save(NoteEntity noteEntity) {
+	public Note save(Note note) {
         Session session = null;
         Transaction transaction = null;
 
         Date currentTime = new Date();
-        if(noteEntity.getDateCreated() == null) {
-            noteEntity.setDateCreated(currentTime);
+        if(note.getDateCreated() == null) {
+            note.setDateCreated(currentTime);
         }
-        noteEntity.setDateUpdated(currentTime);
+        note.setDateUpdated(currentTime);
 
         try {
             session = Application.getSession();
             transaction = session.beginTransaction();
-            session.saveOrUpdate(noteEntity);
+            session.saveOrUpdate(note);
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -40,27 +38,27 @@ public class NoteHibernateRepository implements NoteRepository {
                 session.close();
             }
         }
-        return noteEntity;
+        return note;
 	}
 
 	@Override
 	public void delete(int id) {
-        NoteEntity noteEntity = null;
-        noteEntity = findById(id);
-        if(noteEntity != null) {
-            delete(noteEntity);
+        Note note = null;
+        note = findById(id);
+        if(note != null) {
+            delete(note);
         }
 	}
 
     @Override
-    public void delete(NoteEntity noteEntity) {
+    public void delete(Note note) {
         Session session = null;
         Transaction transaction = null;
         try {
             session = Application.getSession();
             transaction = session.beginTransaction();
-            if(noteEntity != null) {
-                session.delete(noteEntity);
+            if(note != null) {
+                session.delete(note);
             }
             transaction.commit();
         } catch (Exception e) {
@@ -76,13 +74,13 @@ public class NoteHibernateRepository implements NoteRepository {
     }
 
     @Override
-	public NoteEntity findById(int id) {
+	public Note findById(int id) {
 		Session session = null;
-		NoteEntity noteEntity = null;
+		Note note = null;
 		try {
 			session = Application.getSession();
-			noteEntity = (NoteEntity)session.get(NoteEntity.class, id);
-			Hibernate.initialize(noteEntity);
+			note = (Note)session.get(Note.class, id);
+			Hibernate.initialize(note);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -90,6 +88,6 @@ public class NoteHibernateRepository implements NoteRepository {
 				session.close();
 			}
 		}
-		return noteEntity;
+		return note;
 	}
 }

@@ -1,16 +1,16 @@
 package com.jnotes.persistence.repository;
 
-import com.jnotes.models.NoteEntity;
+import com.jnotes.models.Note;
 
 /**
  * Created by Skylar on 9/22/2014.
  */
 public interface NoteRepository {
-    NoteEntity save(NoteEntity noteEntity);
+    Note save(Note note);
 
 	void delete(int id);
 
-    void delete(NoteEntity noteEntity);
+    void delete(Note note);
 
-	NoteEntity findById(int id);
+	Note findById(int id);
 }
