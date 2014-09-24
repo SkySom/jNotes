@@ -2,12 +2,12 @@ package com.jnotes.controllers;
 
 import com.jnotes.exceptions.ResourceNotCreatedException;
 import com.jnotes.exceptions.ResourceNotFoundException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 /**
@@ -17,16 +17,18 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class ExceptionController extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(ResourceNotFoundException.class)
-	@ResponseStatus(value = HttpStatus.NOT_FOUND)
 	@ResponseBody
-	public String handleResourceNotFoundException(ResourceNotFoundException ex) {
-		return ex.getMessage();
+	public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException ex) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("Content-Type", "application/json");
+        return new ResponseEntity<String>("{\"error\":\"" + ex.getMessage() + "\"}", httpHeaders, HttpStatus.NOT_FOUND);
 	}
 
     @ExceptionHandler(ResourceNotCreatedException.class)
-    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ResponseBody
-    public String handleResourceNotCreatedException(ResourceNotCreatedException ex) {
-        return ex.getMessage();
+    public ResponseEntity<String> handleResourceNotCreatedException(ResourceNotCreatedException ex) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("Content-Type", "application/json");
+        return new ResponseEntity<String>("{\"error\":\"" + ex.getMessage() + "\"}", httpHeaders, HttpStatus.BAD_REQUEST);
     }
 }
