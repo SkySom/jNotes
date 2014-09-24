@@ -16,8 +16,8 @@ public class Note {
     private Date dateUpdated;
 
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "note_id")
 	public int getId() {
 		return id;
 	}

@@ -5,12 +5,14 @@ import com.jnotes.models.Note;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 
 /**
  * Created by Skylar on 9/22/2014.
  */
+@Repository
 public class NoteHibernateRepository implements NoteRepository {
 	@Override
 	public Note save(Note note) {
