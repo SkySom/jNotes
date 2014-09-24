@@ -5,8 +5,8 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.6.RELEASE")
-        classpath("com.moowork.gradle:gradle-grunt-plugin:0.6")
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.1.6.RELEASE'
+        classpath 'com.moowork.gradle:gradle-grunt-plugin:0.6'
     }
 }
 
@@ -28,10 +28,11 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-    compile("org.hibernate:hibernate-core:4.3.6.Final")
-    compile('postgresql:postgresql:9.1-901-1.jdbc4')
-    testCompile("junit:junit")
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    compile 'org.hibernate:hibernate-core:4.3.6.Final'
+	compile 'org.springframework.security:spring-security-web:3.2.5.RELEASE'
+    compile 'postgresql:postgresql:9.1-901-1.jdbc4'
+    testCompile 'junit:junit'
 }
 
 task wrapper(type: Wrapper) {
