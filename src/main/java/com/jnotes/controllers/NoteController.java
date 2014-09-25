@@ -3,8 +3,8 @@ package com.jnotes.controllers;
 import com.jnotes.exceptions.ResourceNotCreatedException;
 import com.jnotes.exceptions.ResourceNotFoundException;
 import com.jnotes.models.Note;
-import com.jnotes.persistence.repository.NoteHibernateRepository;
-import com.jnotes.persistence.repository.NoteRepository;
+import com.jnotes.repository.NoteHibernateRepository;
+import com.jnotes.repository.NoteRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 

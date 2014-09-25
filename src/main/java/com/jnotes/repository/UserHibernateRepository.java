@@ -1,7 +1,6 @@
-package com.jnotes.persistence.repository;
+package com.jnotes.repository;
 
 import com.jnotes.Application;
-import com.jnotes.models.Note;
 import com.jnotes.models.User;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;

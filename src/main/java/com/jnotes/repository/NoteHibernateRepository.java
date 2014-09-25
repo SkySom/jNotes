@@ -1,4 +1,4 @@
-package com.jnotes.persistence.repository;
+package com.jnotes.repository;
 
 import com.jnotes.Application;
 import com.jnotes.models.Note;

@@ -1,4 +1,4 @@
-package com.jnotes.persistence.repository;
+package com.jnotes.repository;
 
 import com.jnotes.models.User;
 

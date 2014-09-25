@@ -1,17 +1,15 @@
 package com.jnotes.services;
 
 import com.jnotes.models.UserRole;
-import com.jnotes.persistence.repository.UserHibernateRepository;
-import com.jnotes.persistence.repository.UserRepository;
+import com.jnotes.repository.UserHibernateRepository;
+import com.jnotes.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
