@@ -30,8 +30,7 @@ repositories {
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
     compile 'org.hibernate:hibernate-core:4.3.6.Final'
-	compile 'org.springframework.security:spring-security-web:3.2.5.RELEASE'
-    compile 'postgresql:postgresql:9.1-901-1.jdbc4'
+    compile 'com.h2database:h2'
     testCompile 'junit:junit'
 }
 
