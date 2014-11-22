@@ -12,5 +12,5 @@ public interface NoteRepository {
 
     void delete(Note note);
 
-	Note findById(int id);
+	Note getById(int id);
 }

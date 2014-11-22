@@ -46,7 +46,7 @@ public class NoteHibernateRepository implements NoteRepository {
 	@Override
 	public void delete(int id) {
         Note note = null;
-        note = findById(id);
+        note = getById(id);
         if(note != null) {
             delete(note);
         }
@@ -76,7 +76,7 @@ public class NoteHibernateRepository implements NoteRepository {
     }
 
     @Override
-	public Note findById(int id) {
+	public Note getById(int id) {
 		Session session = null;
 		Note note = null;
 		try {

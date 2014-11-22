@@ -19,7 +19,7 @@ public class NoteController {
 	@RequestMapping(value = "/notes/{noteId}", method = RequestMethod.GET)
 	@ResponseBody
 	public Note getNote(@PathVariable("noteId") int id) throws ResourceNotFoundException {
-		Note note = noteRepository.findById(id);
+		Note note = noteRepository.getById(id);
 		if(note == null) {
 			throw new ResourceNotFoundException("Note with id " + id + " could not be found.");
 		}
@@ -39,7 +39,7 @@ public class NoteController {
     @RequestMapping(value = "/notes/{noteId}", method = RequestMethod.DELETE)
     @ResponseBody
     public void deleteNote(@PathVariable("noteId") int id) throws ResourceNotFoundException {
-        Note note = noteRepository.findById(id);
+        Note note = noteRepository.getById(id);
         if(note != null) {
             noteRepository.delete(note);
         } else {
@@ -51,7 +51,7 @@ public class NoteController {
     @ResponseBody
     public Note updateNote(@RequestBody Note note, @PathVariable("noteId") int id)
         throws ResourceNotFoundException {
-        Note updatedNote = noteRepository.findById(id);
+        Note updatedNote = noteRepository.getById(id);
         if(updatedNote != null) {
             updatedNote.setText(note.getText());
             updatedNote.setTitle(note.getTitle());
