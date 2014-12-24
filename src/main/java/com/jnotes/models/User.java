@@ -12,23 +12,16 @@ import java.util.Set;
 public class User {
     private String username;
     private String password;
-    private boolean enabled;
-    private Set<UserRole> userRole = new HashSet<UserRole>(0);
+    private String email;
+    private UserStatus userStatus;
 
     public User() {
     }
 
-    public User(String username, String password, boolean enabled) {
+    public User(String username, String password, UserStatus userStatus) {
         this.username = username;
         this.password = password;
-        this.enabled = enabled;
-    }
-
-    public User(String username, String password, boolean enabled, Set<UserRole> userRole) {
-        this.username = username;
-        this.password = password;
-        this.enabled = enabled;
-        this.userRole = userRole;
+        this.userStatus = userStatus;
     }
 
     @Id
@@ -50,22 +43,23 @@ public class User {
         this.password = password;
     }
 
-    @Column(name = "enabled", nullable = false)
-    public boolean isEnabled() {
-        return this.enabled;
+    @Column(name = "email")
+    public String getEmail() {
+        return email;
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    /* Not yet.
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    public Set<UserRole> getUserRole() {
-        return this.userRole;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "userstatus", nullable = false)
+    public UserStatus getUserStatus() {
+        return userStatus;
     }
 
-    public void setUserRole(Set<UserRole> userRole) {
-        this.userRole = userRole;
-    } */
+    public void setUserStatus(UserStatus userStatus) {
+        this.userStatus = userStatus;
+    }
 }
+
