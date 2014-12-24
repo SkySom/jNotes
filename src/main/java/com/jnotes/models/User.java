@@ -59,6 +59,7 @@ public class User {
         this.enabled = enabled;
     }
 
+    /* Not yet.
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     public Set<UserRole> getUserRole() {
         return this.userRole;
@@ -66,5 +67,5 @@ public class User {
 
     public void setUserRole(Set<UserRole> userRole) {
         this.userRole = userRole;
-    }
+    } */
 }
