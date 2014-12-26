@@ -11,7 +11,6 @@
         <property name="hbm2ddl.auto">update</property>
         <mapping class="com.jnotes.models.Note"/>
         <mapping class="com.jnotes.models.User"/>
-        <mapping class="com.jnotes.models.UserRole"/>
         <!-- DB schema will be updated if needed -->
     </session-factory>
 </hibernate-configuration>
