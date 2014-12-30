@@ -29,7 +29,7 @@ public class NoteController {
     @RequestMapping(value = "/notes", method = RequestMethod.POST, consumes = "application/json")
     @ResponseBody
     public Note createNote(@RequestBody Note note) throws ResourceNotCreatedException {
-        noteRepository.save(note);
+        note = noteRepository.save(note);
         if(note.getId() == 0) {
             throw new ResourceNotCreatedException("Note couldn't be created");
         }

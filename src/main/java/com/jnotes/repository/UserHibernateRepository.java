@@ -1,7 +1,6 @@
 package com.jnotes.repository;
 
 import com.jnotes.Application;
-import com.jnotes.models.Note;
 import com.jnotes.models.User;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
@@ -36,8 +35,7 @@ public class UserHibernateRepository implements UserRepository {
 
     @Override
     public void delete(int id) {
-        User user = null;
-        user = getById(id);
+        User user = getById(id);
         if(user != null) {
             delete(user);
         }
