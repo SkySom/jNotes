@@ -2,6 +2,7 @@ package com.jnotes.controllers;
 
 import com.jnotes.exceptions.ResourceNotCreatedException;
 import com.jnotes.exceptions.ResourceNotFoundException;
+import com.jnotes.exceptions.ResourceNotUpdatedException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,14 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ResourceNotCreatedException.class)
     @ResponseBody
     public ResponseEntity<String> handleResourceNotCreatedException(ResourceNotCreatedException ex) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("Content-Type", "application/json");
+        return new ResponseEntity<String>("{\"error\":\"" + ex.getMessage() + "\"}", httpHeaders, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ResourceNotUpdatedException.class)
+    @ResponseBody
+    public ResponseEntity<String> handleResourceNotUpdatedException(ResourceNotUpdatedException ex) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Content-Type", "application/json");
         return new ResponseEntity<String>("{\"error\":\"" + ex.getMessage() + "\"}", httpHeaders, HttpStatus.BAD_REQUEST);

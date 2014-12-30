@@ -3,6 +3,7 @@ package com.jnotes.controllers;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.jnotes.exceptions.ResourceNotCreatedException;
 import com.jnotes.exceptions.ResourceNotFoundException;
+import com.jnotes.exceptions.ResourceNotUpdatedException;
 import com.jnotes.models.User;
 import com.jnotes.repository.UserHibernateRepository;
 import com.jnotes.repository.UserRepository;
@@ -31,22 +32,31 @@ public class UserController {
 
 	@RequestMapping(value = "/users/{userId}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public void deleteUser(@PathVariable("noteId") int id) throws ResourceNotFoundException {
-		User note = userRepository.getById(id);
-		if(note != null) {
-			userRepository.delete(note);
+	public void deleteUser(@PathVariable("userId") int id) throws ResourceNotFoundException {
+		User user = userRepository.getById(id);
+		if(user != null) {
+			userRepository.delete(user);
 		} else {
-			throw new ResourceNotFoundException("Note with id " + id + " could not be found");
+			throw new ResourceNotFoundException("User with id " + id + " could not be found");
 		}
 	}
 
 	@RequestMapping(value = "/users/{userId}", method = RequestMethod.PUT, consumes = "application/json")
 	@ResponseBody
 	@JsonView(User.WithoutPasswordView.class)
-	public User updateUser(@RequestBody User user, @PathVariable("userId") int id) throws ResourceNotFoundException {
+	public User updateUser(@RequestBody User user, @PathVariable("userId") int id) throws ResourceNotFoundException,
+			ResourceNotUpdatedException {
 		User updatedUser = userRepository.getById(id);
 		if(updatedUser != null) {
-
+			if(!user.getEmail().equals("")) updatedUser.setEmail(user.getEmail());
+			if(!user.getPassword().equals("")) {
+				if(!user.getPassword().equals(user.getConfirmPassword())) {
+					throw new ResourceNotUpdatedException("Passwords do not match");
+				} else {
+					String hashed = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+					user.setPassword(hashed);
+				}
+			}
 		} else {
 			throw new ResourceNotFoundException("User with id " + id + " could not be found");
 		}

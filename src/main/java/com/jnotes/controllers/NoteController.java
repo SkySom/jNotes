@@ -59,6 +59,7 @@ public class NoteController {
         } else {
             throw new ResourceNotFoundException("Note with id " + id + " could not be found");
         }
+        updatedNote = noteRepository.save(updatedNote);
         return updatedNote;
     }
 }
