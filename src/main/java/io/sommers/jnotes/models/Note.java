@@ -1,4 +1,4 @@
-package com.jnotes.models;
+package io.sommers.jnotes.models;
 
 import javax.persistence.*;
 import java.util.Date;

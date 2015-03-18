@@ -1,7 +1,7 @@
-package com.jnotes.repository;
+package io.sommers.jnotes.repository;
 
-import com.jnotes.Application;
-import com.jnotes.models.Note;
+import io.sommers.jnotes.Application;
+import io.sommers.jnotes.models.Note;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

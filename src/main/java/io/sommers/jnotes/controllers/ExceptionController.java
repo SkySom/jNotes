@@ -1,8 +1,8 @@
-package com.jnotes.controllers;
+package io.sommers.jnotes.controllers;
 
-import com.jnotes.exceptions.ResourceNotCreatedException;
-import com.jnotes.exceptions.ResourceNotFoundException;
-import com.jnotes.exceptions.ResourceNotUpdatedException;
+import io.sommers.jnotes.exceptions.ResourceNotCreatedException;
+import io.sommers.jnotes.exceptions.ResourceNotFoundException;
+import io.sommers.jnotes.exceptions.ResourceNotUpdatedException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

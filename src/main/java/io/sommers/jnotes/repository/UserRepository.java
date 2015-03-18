@@ -1,6 +1,6 @@
-package com.jnotes.repository;
+package io.sommers.jnotes.repository;
 
-import com.jnotes.models.User;
+import io.sommers.jnotes.models.User;
 
 /**
  * Created by Skylar on 9/24/2014.

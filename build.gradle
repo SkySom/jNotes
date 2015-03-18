@@ -1,12 +1,18 @@
 buildscript {
     repositories {
-        maven { url "http://repo.spring.io/libs-release" }
+        maven {
+            url "http://repo.spring.io/libs-release"
+        }
+        maven {
+            url "http://repos.zeroturnaround.com/nexus/content/groups/zt-public/"
+        }
         mavenLocal()
         mavenCentral()
     }
     dependencies {
         classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.1.6.RELEASE'
         classpath 'com.moowork.gradle:gradle-grunt-plugin:0.6'
+        classpath 'org.zeroturnaround:gradle-jrebel-plugin:1.1.2'
     }
 }
 
@@ -15,6 +21,8 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: 'com.moowork.grunt'
+apply plugin: 'rebel'
+
 
 jar {
     baseName = 'jnotes'
@@ -50,3 +58,29 @@ test {
         logger.lifecycle("Test: " + descriptor + " produced standard out/err: " + event.message )
     }
 }
+
+rebel {
+    alwaysGenerate = true
+
+    showGenerated = true
+
+    rebelXmlDirectory = "build/classes"
+
+    rootPath = "\${my-workspace}"
+
+    classpath {
+        // don't add the default classes target directory
+        omitDefaultClassesDir = true
+
+        // don't add the default resources directory
+        omitDefaultResourcesDir = true
+
+        resource {
+            directory = "build/main/"
+            includes = ["**/*"]
+            excludes = ["*.java", "*.properties"]
+        }
+    }
+}
+
+jar.dependsOn(generateRebel)

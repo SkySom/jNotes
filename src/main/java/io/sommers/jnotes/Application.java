@@ -1,4 +1,4 @@
-package com.jnotes;
+package io.sommers.jnotes;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;

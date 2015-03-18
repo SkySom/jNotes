@@ -1,4 +1,4 @@
-package com.jnotes.helpers;
+package io.sommers.jnotes.helpers;
 
 /**
  * Created by Skylar on 12/29/2014.

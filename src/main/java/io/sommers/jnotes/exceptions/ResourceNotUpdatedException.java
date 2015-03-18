@@ -1,4 +1,4 @@
-package com.jnotes.exceptions;
+package io.sommers.jnotes.exceptions;
 
 /**
  * Created by Skylar on 12/29/2014.

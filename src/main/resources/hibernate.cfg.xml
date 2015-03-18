@@ -9,8 +9,8 @@
         <property name="connection.username"></property>
         <property name="connection.password"></property>
         <property name="hbm2ddl.auto">update</property>
-        <mapping class="com.jnotes.models.Note"/>
-        <mapping class="com.jnotes.models.User"/>
+        <mapping class="io.sommers.jnotes.models.Note"/>
+        <mapping class="io.sommers.jnotes.models.User"/>
         <!-- DB schema will be updated if needed -->
     </session-factory>
 </hibernate-configuration>

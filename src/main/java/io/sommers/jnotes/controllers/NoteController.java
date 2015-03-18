@@ -1,10 +1,10 @@
-package com.jnotes.controllers;
+package io.sommers.jnotes.controllers;
 
-import com.jnotes.exceptions.ResourceNotCreatedException;
-import com.jnotes.exceptions.ResourceNotFoundException;
-import com.jnotes.models.Note;
-import com.jnotes.repository.NoteHibernateRepository;
-import com.jnotes.repository.NoteRepository;
+import io.sommers.jnotes.exceptions.ResourceNotCreatedException;
+import io.sommers.jnotes.exceptions.ResourceNotFoundException;
+import io.sommers.jnotes.models.Note;
+import io.sommers.jnotes.repository.NoteHibernateRepository;
+import io.sommers.jnotes.repository.NoteRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 

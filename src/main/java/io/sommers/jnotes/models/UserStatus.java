@@ -1,4 +1,4 @@
-package com.jnotes.models;
+package io.sommers.jnotes.models;
 
 /**
  * Created by Skylar on 12/24/2014.

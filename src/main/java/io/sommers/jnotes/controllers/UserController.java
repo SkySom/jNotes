@@ -1,12 +1,12 @@
-package com.jnotes.controllers;
+package io.sommers.jnotes.controllers;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.jnotes.exceptions.ResourceNotCreatedException;
-import com.jnotes.exceptions.ResourceNotFoundException;
-import com.jnotes.exceptions.ResourceNotUpdatedException;
-import com.jnotes.models.User;
-import com.jnotes.repository.UserHibernateRepository;
-import com.jnotes.repository.UserRepository;
+import io.sommers.jnotes.exceptions.ResourceNotCreatedException;
+import io.sommers.jnotes.exceptions.ResourceNotFoundException;
+import io.sommers.jnotes.exceptions.ResourceNotUpdatedException;
+import io.sommers.jnotes.models.User;
+import io.sommers.jnotes.repository.UserHibernateRepository;
+import io.sommers.jnotes.repository.UserRepository;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
 
