@@ -58,29 +58,3 @@ test {
         logger.lifecycle("Test: " + descriptor + " produced standard out/err: " + event.message )
     }
 }
-
-rebel {
-    alwaysGenerate = true
-
-    showGenerated = true
-
-    rebelXmlDirectory = "build/classes"
-
-    rootPath = "\${my-workspace}"
-
-    classpath {
-        // don't add the default classes target directory
-        omitDefaultClassesDir = true
-
-        // don't add the default resources directory
-        omitDefaultResourcesDir = true
-
-        resource {
-            directory = "build/main/"
-            includes = ["**/*"]
-            excludes = ["*.java", "*.properties"]
-        }
-    }
-}
-
-jar.dependsOn(generateRebel)
