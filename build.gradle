@@ -42,6 +42,7 @@ dependencies {
     compile 'com.h2database:h2'
     testCompile 'junit:junit'
     testCompile 'org.springframework:spring-test'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
     testCompile 'org.mockito:mockito-core:1.+'
 }
 
@@ -51,10 +52,10 @@ task wrapper(type: Wrapper) {
 
 test {
     beforeTest { descriptor ->
-        logger.lifecycle("Running test: " + descriptor)
+        logger.lifecycle("Running " + descriptor)
     }
 
-    onOutput { descriptor, event ->
-        logger.lifecycle("Test: " + descriptor + " produced standard out/err: " + event.message )
+    afterTest { descriptor, result ->
+        logger.lifecycle(descriptor + " has finished with result: " + result.getResultType() )
     }
 }
