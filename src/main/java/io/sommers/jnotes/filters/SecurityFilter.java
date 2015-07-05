@@ -1,7 +1,5 @@
 package io.sommers.jnotes.filters;
 
-import org.springframework.stereotype.Component;
-
 import javax.servlet.*;
 import java.io.IOException;
 
@@ -9,7 +7,6 @@ import java.io.IOException;
  * Created by Skylar on 7/5/2015.
  */
 
-@Component
 public class SecurityFilter implements Filter {
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
